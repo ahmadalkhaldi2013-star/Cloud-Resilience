@@ -1,3 +1,8 @@
+---
+layout: default
+title: Fault Isolation – Core Concepts
+---
+
 # Welcome to Cloud Resilience  
 
 This site provides actionable guidance for building **resilient cloud systems**.  
