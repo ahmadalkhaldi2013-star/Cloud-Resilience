@@ -33,9 +33,14 @@ Map each workload to a tier. Don’t overspend on Platinum for apps that only ne
 
 Proven approaches to withstand failure:  
 
-- **Platinum:** Multi-region databases (e.g., DynamoDB Global Tables, Cloud Spanner) for load and fault resilience.  
-- **Gold:** Multi-region replication (e.g., Aurora Global Database, CosmosDB) for corruption protection.  
-- **Silver:** Regional instances for basic recovery.  
+```mermaid
+flowchart TB
+  Platinum[Platinum<br/>Multi-region DBs<br/>e.g. DynamoDB Global Tables<br/>Cloud Spanner]
+  Gold[Gold<br/>Multi-region replication<br/>e.g. Aurora Global DB<br/>CosmosDB]
+  Silver[Silver<br/>Regional instances<br/>Basic recovery]
+
+  Platinum --> Gold --> Silver
+```
 
 **Key Questions:**  
 - How will the system handle **load spikes**?  
@@ -51,10 +56,13 @@ Choose patterns that match the assigned tier. Build runbooks for load, database,
 
 A complete strategy includes:  
 
-- **Requirements & Scope** → Define business impact and objectives.  
-- **Failure Modes** → Identify, document, and assign mitigations.  
-- **Observability** → Metrics, logs, tracing, synthetic tests.  
-- **Operations & Tools** → Runbooks, CI/CD resilience checks, chaos experiments.  
+```mermaid
+flowchart TD
+  Req[Requirements & Scope] --> Fail[Failure Modes]
+  Fail --> Obs[Observability<br/>Metrics/Logs/Tracing]
+  Obs --> Ops[Operations & Tools<br/>Runbooks, CI/CD, Chaos]
+  Ops --> Req
+```
 
 **Action:**  
 Document a resilience playbook for each workload with failure modes, observability dashboards, and operational runbooks.  
@@ -65,6 +73,13 @@ Document a resilience playbook for each workload with failure modes, observabili
 
 Resilience is a culture as much as a design:  
 
+```mermaid
+flowchart TD
+  SO[Service Ownership] --> ORR[Operational Readiness Reviews]
+  ORR --> CD[Safe Continuous Deployment]
+  CD --> CoE[Correction of Errors]
+  CoE --> SO
+```
 - **Service Ownership** → Teams own reliability end-to-end.  
 - **Safe Continuous Deployment** → Automate to reduce risk.  
 - **Correction of Errors (CoE)** → Root cause analysis and prevention.  
