@@ -19,8 +19,6 @@ A repeatable standard to assess applications and guide strategies for preventing
 - **Correct Output** → Ensure accurate results.  
 - **Redundancy** → Replication, failover, backups.  
 
-**Action:** Validate all systems against these five core properties.  
-
 ```mermaid
 graph TD
   A[Resilient System] --> B[Fault Isolation]
@@ -29,6 +27,8 @@ graph TD
   A --> E[Correct Output]
   A --> F[Redundancy]
 ```
+**Action:** Validate all systems against these five core properties.
+
 ---
 
 ## 🔹 Categories of Failure (SEEMS)  
@@ -38,8 +38,6 @@ graph TD
 4. **Misconfiguration & Bugs** → Incorrect execution.  
 5. **Shared Fate** → Violated fault isolation (e.g., noisy neighbors).  
 
-**Action:** Map each workload against SEEMS → design mitigation for each category.  
-
 ```mermaid
 flowchart TD
   S[Failures] --> SPoF[Single Point of Failure]
@@ -48,6 +46,9 @@ flowchart TD
   S --> BUG[Misconfig & Bugs]
   S --> SF[Shared Fate]
 ```
+
+**Action:** Map each workload against SEEMS → design mitigation for each category.
+
 ---
 
 ## 🔹 Analysis Maturity  
@@ -55,12 +56,13 @@ flowchart TD
 - **Application** → End-to-end workload analysis.  
 - **Advanced** → Full **user journey** evaluation.  
 
-**Action:** Mature resilience testing from components → to workloads → to user journeys.  
-
 ```mermaid
 flowchart LR
   B[Beginning: Component-level] --> A[Application: Workload-level] --> ADV[Advanced: User Journey]
 ```
+
+**Action:** Mature resilience testing from components → to workloads → to user journeys.  
+
 ---
 
 ## 🔹 What Are We Analyzing?  
@@ -87,8 +89,6 @@ flowchart LR
 - **Operational Burden** → More monitoring, DR drills.  
 - **Consistency & Latency** → Trade-offs in distributed systems.  
 
-**Action:** Weigh designs based on *likelihood × impact*.  
-
 ```mermaid
 graph TD
   A[High Impact & High Likelihood] -->|Action| FIX[Fix Immediately]
@@ -96,42 +96,35 @@ graph TD
   C[Low Impact & High Likelihood] -->|Action| AUTO[Automate Recovery]
   D[Low Impact & Low Likelihood] -->|Action| MON[Monitor & Accept Risk]
 ```
----
 
-## 🔹 Weighing Trade-offs  
-- **High Impact + High Likelihood** → Must fix immediately.  
-- **High Impact + Low Likelihood** → Backups/runbooks.  
-- **Low Impact + High Likelihood** → Automate recovery.  
-- **Low Impact + Low Likelihood** → Monitor, accept risk.  
-
-**Action:** Use a risk matrix to prioritize investments.  
+**Action:** Weigh designs based on *likelihood × impact*.  Use a risk matrix to prioritize investments. 
 
 ---
 
 ## 🔹 Failure Mode Observability  
-- **Leading Indicators** → Early warnings (queue depth, CPU, latency trends).  
-- **Lagging Indicators** → Customer-visible issues (downtime, failed requests).  
-
-**Action:** Instrument for both — catch failures before users see them.  
-
 ```mermaid
 flowchart LR
   L[Leading Indicators] --> WARN[Early Warning: Queue Depth, CPU, Latency]
   G[Lagging Indicators] --> ISSUE[Customer Visible: Downtime, Errors]
 ```
+
+**Action:** Instrument for both — catch failures before users see them.  
+
 ---
 
 ## 🔹 Failure Mode Mitigations  
 - **Preventative** → Capacity planning, failover, chaos testing.  
 - **Corrective** → Incident response, runbooks, rollback, hotfix.  
-
-**Action:** Pair each failure mode with preventative + corrective controls.  
+  
 
 ```mermaid
 flowchart TD
   F[Failure Mode] --> P[Preventative]
   F --> C[Corrective]
 ```
+
+**Action:** Pair each failure mode with preventative + corrective controls.
+
 ---
 
 ## 🔹 Continuous Improvement  
@@ -139,7 +132,7 @@ flowchart TD
 - **Test** → Regular chaos drills and synthetic failure injection.  
 - **Learn** → Post-incident reviews, update playbooks.  
 
-**Action:** Treat resilience as an iterative lifecycle, not one-time design.  
+ 
 
 ```mermaid
 flowchart LR
@@ -147,6 +140,8 @@ flowchart LR
   T --> L[Learn & Improve]
   L --> O
 ```
+**Action:** Treat resilience as an iterative lifecycle, not one-time design. 
+
 ---
 
 ## 🔹 Key Takeaways  
