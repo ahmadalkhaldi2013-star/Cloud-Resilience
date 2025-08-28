@@ -12,8 +12,6 @@
   - Simpler, fewer dependencies.  
   - Higher volume.  
 
-**Action:** Architect workloads to **rely on the data plane**, not continuous control plane availability.  
-
 ```mermaid
 flowchart TD
   U[User] --> CP[Control Plane<br/>Create/Update/Delete]
@@ -22,13 +20,15 @@ flowchart TD
   DP --> Res
 ```
 
+**Action:** Architect workloads to **rely on the data plane**, not continuous control plane availability.  
+
 ---
 
 ## 🔹 Example: EC2
 - **Control Plane**: launching new EC2 instances.  
 - **Data Plane**: running EC2 instances.  
 
-**Action:** Design for EC2 workloads to **keep running if the control plane is unavailable**.
+
 
 ```mermaid
 flowchart TD
@@ -37,52 +37,59 @@ flowchart TD
   U -.-> DP[EC2 Data Plane<br/>Running Instances]
   DP --> Running[Existing EC2 Instances Running]
 ```
+**Action:** Design for EC2 workloads to **keep running if the control plane is unavailable**.
 
 ---
 
 ## 🔹 Additional Service Examples
+
 ```mermaid
 flowchart TB
-  subgraph S3["S3"]
-    direction TB
-    S3CP["CP:<br/>CreateBucket<br/>PutBucketPolicy"]
-    S3DP["DP:<br/>GetObject<br/>PutObject"]
+
+  subgraph Row1[ ]
+    direction LR
+    subgraph RDS["RDS"]
+      direction TB
+      RDSCP["CP:<br/>CreateDatabaseInstance"]
+      RDSDP["DP:<br/>Database Queries"]
+    end
+
+    subgraph IAM["IAM"]
+      direction TB
+      IAMCP["CP:<br/>CreateRole<br/>CreatePolicy"]
+      IAMDP["DP:<br/>AuthN/AuthZ"]
+    end
+
+    subgraph R53["Route 53"]
+      direction TB
+      R53CP["CP:<br/>CreateHostedZone<br/>UpdateResourceSet"]
+      R53DP["DP:<br/>DNS Resolution<br/>Health Checks"]
+    end
   end
 
-  subgraph DynamoDB["DynamoDB"]
-    direction TB
-    DDBCP["CP:<br/>CreateTable<br/>UpdateTable"]
-    DDBDP["DP:<br/>GetItem<br/>PutItem<br/>Scan<br/>Query"]
-  end
+  subgraph Row2[ ]
+    direction LR
+    subgraph ELB["Elastic Load Balancer (ELB)"]
+      direction TB
+      ELBCP["CP:<br/>CreateLoadBalancer<br/>CreateTargetGroup"]
+      ELBDP["DP:<br/>Forward Traffic"]
+    end
 
-  subgraph ELB["Elastic Load Balancer (ELB)"]
-    direction TB
-    ELBCP["CP:<br/>CreateLoadBalancer<br/>CreateTargetGroup"]
-    ELBDP["DP:<br/>Forward Traffic"]
-  end
+    subgraph DDB["DynamoDB"]
+      direction TB
+      DDBCP["CP:<br/>CreateTable<br/>UpdateTable"]
+      DDBDP["DP:<br/>GetItem<br/>PutItem<br/>Scan<br/>Query"]
+    end
 
-  subgraph Route53["Route 53"]
-    direction TB
-    R53CP["CP:<br/>CreateHostedZone<br/>UpdateResourceSet"]
-    R53DP["DP:<br/>DNS Resolution<br/>Health Checks"]
-  end
-
-  subgraph IAM["IAM"]
-    direction TB
-    IAMCP["CP:<br/>CreateRole<br/>CreatePolicy"]
-    IAMDP["DP:<br/>AuthN/AuthZ"]
-  end
-
-  subgraph RDS["RDS"]
-    direction TB
-    RDSCP["CP:<br/>CreateDatabaseInstance"]
-    RDSDP["DP:<br/>Database Queries"]
+    subgraph S3["S3"]
+      direction TB
+      S3CP["CP:<br/>CreateBucket<br/>PutBucketPolicy"]
+      S3DP["DP:<br/>GetObject<br/>PutObject"]
+    end
   end
 ```
 
 **Action:** Map your services into **CP vs DP operations**. Depend on **DP ops** for resiliency.
-
-
 
 ---
 
@@ -114,7 +121,7 @@ flowchart TB
 - CP pushes config → DP.  
 - DP continues running even if CP unavailable.  
 
-**Action:** Limit **real-time reliance on CP**. Push config early, then run steady.  
+ 
 
 ```mermaid
 flowchart LR
@@ -125,6 +132,7 @@ flowchart LR
   DP2 -.-> Running
   DP3 -.-> Running
 ```
+**Action:** Limit **real-time reliance on CP**. Push config early, then run steady. 
 
 ---
 
@@ -141,13 +149,15 @@ flowchart LR
 - System can keep operating **without changes** during dependency outages.  
 - Dependency ≠ Destiny → you’re not forced to fail just because a dependency did.  
 
-**Action:** Design for **steady-state survivability**. 
+
 
 ```mermaid
 flowchart LR
   Dep1[Dependency Fails] -->|Still Runs| Sys[System Up]
   Dep2[Another Dependency Fails] -->|Still Runs| Sys
 ```
+
+**Action:** Design for **steady-state survivability**. 
 
 ---
 
@@ -186,7 +196,7 @@ flowchart LR
 ## 🔹 EC2 Anti-Pattern
 ❌ One Auto Scaling group stretched across multiple AZs → shared failure risk.  
 
-**Action:** Never stretch a single scaling group across AZs.  
+
 
 ```mermaid
 flowchart TD
@@ -196,12 +206,14 @@ flowchart TD
   note[If SG fails → All AZs impacted ❌]
 ```
 
+**Action:** Never stretch a single scaling group across AZs.  
+
 ---
 
 ## 🔹 EC2 Best Practice
 ✅ Separate scaling groups per AZ, with distribution across multiple regions.  
 
-**Action:** Architect **independent scaling capacity per AZ**.  
+
 
 ```mermaid
 flowchart TD
@@ -211,13 +223,15 @@ flowchart TD
   note[Failure in one AZ does not cascade ✅]
 ```
 
+**Action:** Architect **independent scaling capacity per AZ**.  
+
 ---
 
 ## 🔹 DNS Serve-Stale (RFC 8767)
 - Recursive resolvers return cached results when authoritative DNS is unavailable.  
 - Adds resilience against outages and DoS attacks.  
 
-**Action:** Enable **Serve-Stale DNS** where supported to maintain service continuity.  
+ 
 
 ```mermaid
 flowchart LR
@@ -227,6 +241,8 @@ flowchart LR
   A --X--> Fail[Unavailable]
   C --> U
 ```
+
+**Action:** Enable **Serve-Stale DNS** where supported to maintain service continuity. 
 
 ---
 
@@ -243,7 +259,7 @@ flowchart LR
 - Each AZ has its own **control plane + data plane**.  
 - Regional services rely on multiple AZs, but workloads should run AZ-local when possible.  
 
-**Action:** Deploy across **independent AZs** to avoid shared-fate failures.  
+
 
 ```mermaid
 flowchart TD
@@ -264,6 +280,8 @@ flowchart TD
   User[User Requests] --> DP1 & DP2 & DP3
 ```
 
+**Action:** Deploy across **independent AZs** to avoid shared-fate failures.  
+
 ---
 
 ## 🔹 Customer AZI Example
@@ -271,7 +289,6 @@ flowchart TD
 - Aurora primary in one AZ, replicas in others.  
 - Network Load Balancers distribute traffic.  
 
-**Action:** Always **spread critical resources across multiple AZs**.  
 
 ```mermaid
 flowchart TD
@@ -294,6 +311,8 @@ flowchart TD
   end
   User[User] --> NLB1 & NLB2 & NLB3
 ```
+
+**Action:** Always **spread critical resources across multiple AZs**.  
 
 ---
 
