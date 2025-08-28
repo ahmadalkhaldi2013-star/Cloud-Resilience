@@ -6,7 +6,8 @@ It covers lifecycle activities, resilience tiers, architectural patterns, strate
 ---
 
 ## 📖 Start Here  
-- [Resilience in the Cloud](resilience-in-the-cloud.md)  
+- [Resilience in the Cloud](resilience-in-the-cloud.md)
+- [Resilience Analysis Framework](resilience-analysis-framework.md)  
 
 *(More topics will be added soon — total ~20 guides)*  
 
