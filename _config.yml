@@ -1,4 +1,4 @@
 title: Cloud Resilience
 markdown: kramdown
-theme: null        # we’re using our own layout
-plugins: []        # (GitHub Pages safe)
+kramdown:
+  input: GFM
