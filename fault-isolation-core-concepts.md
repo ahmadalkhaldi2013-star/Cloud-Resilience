@@ -45,15 +45,6 @@ flowchart TD
 ---
 
 ## 🔹 Additional Service Examples
-| Service   | Control Plane Actions               | Data Plane Actions              |
-|-----------|-------------------------------------|---------------------------------|
-| S3        | CreateBucket, PutBucketPolicy       | GetObject, PutObject            |
-| DynamoDB  | CreateTable, UpdateTable            | GetItem, PutItem, Scan, Query   |
-| ELB       | CreateLoadBalancer, CreateTargetGrp | Load balancer traffic           |
-| Route 53  | CreateHostedZone, UpdateResourceSet | DNS resolution, health checks   |
-| IAM       | CreateRole, CreatePolicy            | AuthN/AuthZ                     |
-| RDS       | CreateDatabaseInstance              | DB queries                      |
-
 <div class="mermaid">
 flowchart TB
   subgraph S3["S3"]
