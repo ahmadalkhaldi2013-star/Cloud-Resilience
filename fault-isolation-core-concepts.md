@@ -14,13 +14,13 @@
 
 **Action:** Architect workloads to **rely on the data plane**, not continuous control plane availability.  
 
-<div class="mermaid">
+```mermaid
 flowchart TD
   U[User] --> CP[Control Plane<br/>Create/Update/Delete]
   U --> DP[Data Plane<br/>Execute Requests]
   CP -.-> Res[Resources]
   DP --> Res
-</div>
+```
 
 ---
 
