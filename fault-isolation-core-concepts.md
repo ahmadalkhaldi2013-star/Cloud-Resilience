@@ -48,43 +48,44 @@ flowchart TD
 <div class="mermaid">
 flowchart TB
   subgraph S3["S3"]
-    direction LR
+    direction TB
     S3CP["CP:<br/>CreateBucket<br/>PutBucketPolicy"]
     S3DP["DP:<br/>GetObject<br/>PutObject"]
   end
 
   subgraph DynamoDB["DynamoDB"]
-    direction LR
+    direction TB
     DDBCP["CP:<br/>CreateTable<br/>UpdateTable"]
     DDBDP["DP:<br/>GetItem<br/>PutItem<br/>Scan<br/>Query"]
   end
 
-  subgraph ELB["ELB"]
-    direction LR
+  subgraph ELB["Elastic Load Balancer (ELB)"]
+    direction TB
     ELBCP["CP:<br/>CreateLoadBalancer<br/>CreateTargetGroup"]
-    ELBDP["DP:<br/>Traffic Forwarding"]
+    ELBDP["DP:<br/>Forward Traffic"]
   end
 
-  subgraph Route53["Route&nbsp;53"]
-    direction LR
+  subgraph Route53["Route 53"]
+    direction TB
     R53CP["CP:<br/>CreateHostedZone<br/>UpdateResourceSet"]
     R53DP["DP:<br/>DNS Resolution<br/>Health Checks"]
   end
 
   subgraph IAM["IAM"]
-    direction LR
+    direction TB
     IAMCP["CP:<br/>CreateRole<br/>CreatePolicy"]
     IAMDP["DP:<br/>AuthN/AuthZ"]
   end
 
   subgraph RDS["RDS"]
-    direction LR
+    direction TB
     RDSCP["CP:<br/>CreateDatabaseInstance"]
     RDSDP["DP:<br/>Database Queries"]
   end
 </div>
 
 **Action:** Map your services into **CP vs DP operations**. Depend on **DP ops** for resiliency.
+
 
 
 ---
