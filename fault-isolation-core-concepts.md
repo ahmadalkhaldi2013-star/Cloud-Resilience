@@ -54,7 +54,47 @@ flowchart TD
 | IAM       | CreateRole, CreatePolicy            | AuthN/AuthZ                     |
 | RDS       | CreateDatabaseInstance              | DB queries                      |
 
-**Action:** Map your services into **CP vs DP operations**. Depend on **DP ops** for resiliency.  
+<div class="mermaid">
+flowchart TB
+  subgraph S3["S3"]
+    direction LR
+    S3CP["CP:<br/>CreateBucket<br/>PutBucketPolicy"]
+    S3DP["DP:<br/>GetObject<br/>PutObject"]
+  end
+
+  subgraph DynamoDB["DynamoDB"]
+    direction LR
+    DDBCP["CP:<br/>CreateTable<br/>UpdateTable"]
+    DDBDP["DP:<br/>GetItem<br/>PutItem<br/>Scan<br/>Query"]
+  end
+
+  subgraph ELB["ELB"]
+    direction LR
+    ELBCP["CP:<br/>CreateLoadBalancer<br/>CreateTargetGroup"]
+    ELBDP["DP:<br/>Traffic Forwarding"]
+  end
+
+  subgraph Route53["Route&nbsp;53"]
+    direction LR
+    R53CP["CP:<br/>CreateHostedZone<br/>UpdateResourceSet"]
+    R53DP["DP:<br/>DNS Resolution<br/>Health Checks"]
+  end
+
+  subgraph IAM["IAM"]
+    direction LR
+    IAMCP["CP:<br/>CreateRole<br/>CreatePolicy"]
+    IAMDP["DP:<br/>AuthN/AuthZ"]
+  end
+
+  subgraph RDS["RDS"]
+    direction LR
+    RDSCP["CP:<br/>CreateDatabaseInstance"]
+    RDSDP["DP:<br/>Database Queries"]
+  end
+</div>
+
+**Action:** Map your services into **CP vs DP operations**. Depend on **DP ops** for resiliency.
+
 
 ---
 
