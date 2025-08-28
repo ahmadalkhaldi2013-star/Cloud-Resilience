@@ -30,18 +30,18 @@ flowchart TD
 
 **Action:** Design for EC2 workloads to **keep running if the control plane is unavailable**.
 
-<div class="mermaid">
+```mermaid
 flowchart TD
   U[User] --> CP[EC2 Control Plane<br/>Launch Instance]
   CP --> NewEC2[New EC2 Instance]
   U -.-> DP[EC2 Data Plane<br/>Running Instances]
   DP --> Running[Existing EC2 Instances Running]
-</div>
+```
 
 ---
 
 ## 🔹 Additional Service Examples
-<div class="mermaid">
+```mermaid
 flowchart TB
   subgraph S3["S3"]
     direction TB
@@ -78,7 +78,7 @@ flowchart TB
     RDSCP["CP:<br/>CreateDatabaseInstance"]
     RDSDP["DP:<br/>Database Queries"]
   end
-</div>
+```
 
 **Action:** Map your services into **CP vs DP operations**. Depend on **DP ops** for resiliency.
 
@@ -116,7 +116,7 @@ flowchart TB
 
 **Action:** Limit **real-time reliance on CP**. Push config early, then run steady.  
 
-<div class="mermaid">
+```mermaid
 flowchart LR
   CP[Control Plane] -- Push Config --> DP1[Data Plane 1]
   CP -- Push Config --> DP2[Data Plane 2]
@@ -124,7 +124,7 @@ flowchart LR
   DP1 -.-> Running[Workloads Continue]
   DP2 -.-> Running
   DP3 -.-> Running
-</div>
+```
 
 ---
 
@@ -143,11 +143,11 @@ flowchart LR
 
 **Action:** Design for **steady-state survivability**. 
 
-<div class="mermaid">
+```mermaid
 flowchart LR
   Dep1[Dependency Fails] -->|Still Runs| Sys[System Up]
   Dep2[Another Dependency Fails] -->|Still Runs| Sys
-</div>
+```
 
 ---
 
@@ -188,13 +188,13 @@ flowchart LR
 
 **Action:** Never stretch a single scaling group across AZs.  
 
-<div class="mermaid">
+```mermaid
 flowchart TD
   SG[One Scaling Group] --> AZ1[AZ1]
   SG --> AZ2[AZ2]
   SG --> AZ3[AZ3]
   note[If SG fails → All AZs impacted ❌]
-</div>
+```
 
 ---
 
@@ -203,13 +203,13 @@ flowchart TD
 
 **Action:** Architect **independent scaling capacity per AZ**.  
 
-<div class="mermaid">
+```mermaid
 flowchart TD
   SG1[Scaling Group AZ1] --> AZ1[AZ1]
   SG2[Scaling Group AZ2] --> AZ2[AZ2]
   SG3[Scaling Group AZ3] --> AZ3[AZ3]
   note[Failure in one AZ does not cascade ✅]
-</div>
+```
 
 ---
 
@@ -219,14 +219,14 @@ flowchart TD
 
 **Action:** Enable **Serve-Stale DNS** where supported to maintain service continuity.  
 
-<div class="mermaid">
+```mermaid
 flowchart LR
   U[User Query] --> R[Recursive Resolver]
   R -->|Cache Hit| C[Cached Record]
   R -->|Query| A[Authoritative DNS Server]
   A --X--> Fail[Unavailable]
   C --> U
-</div>
+```
 
 ---
 
@@ -245,7 +245,7 @@ flowchart LR
 
 **Action:** Deploy across **independent AZs** to avoid shared-fate failures.  
 
-<div class="mermaid">
+```mermaid
 flowchart TD
   subgraph Region
     subgraph AZ1
@@ -262,7 +262,7 @@ flowchart TD
     end
   end
   User[User Requests] --> DP1 & DP2 & DP3
-</div>
+```
 
 ---
 
@@ -273,7 +273,7 @@ flowchart TD
 
 **Action:** Always **spread critical resources across multiple AZs**.  
 
-<div class="mermaid">
+```mermaid
 flowchart TD
   subgraph Region
     subgraph AZ1
@@ -293,7 +293,7 @@ flowchart TD
     end
   end
   User[User] --> NLB1 & NLB2 & NLB3
-</div>
+```
 
 ---
 
