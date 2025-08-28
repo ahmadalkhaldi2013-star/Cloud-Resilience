@@ -21,6 +21,14 @@ A repeatable standard to assess applications and guide strategies for preventing
 
 **Action:** Validate all systems against these five core properties.  
 
+```mermaid
+graph TD
+  A[Resilient System] --> B[Fault Isolation]
+  A --> C[Sufficient Capacity]
+  A --> D[Timely Output]
+  A --> E[Correct Output]
+  A --> F[Redundancy]
+```
 ---
 
 ## 🔹 Categories of Failure (SEEMS)  
@@ -32,6 +40,14 @@ A repeatable standard to assess applications and guide strategies for preventing
 
 **Action:** Map each workload against SEEMS → design mitigation for each category.  
 
+```mermaid
+flowchart TD
+  S[Failures] --> SPoF[Single Point of Failure]
+  S --> EL[Excessive Load]
+  S --> LAT[Excessive Latency]
+  S --> BUG[Misconfig & Bugs]
+  S --> SF[Shared Fate]
+```
 ---
 
 ## 🔹 Analysis Maturity  
@@ -41,6 +57,10 @@ A repeatable standard to assess applications and guide strategies for preventing
 
 **Action:** Mature resilience testing from components → to workloads → to user journeys.  
 
+```mermaid
+flowchart LR
+  B[Beginning: Component-level] --> A[Application: Workload-level] --> ADV[Advanced: User Journey]
+```
 ---
 
 ## 🔹 What Are We Analyzing?  
@@ -69,6 +89,13 @@ A repeatable standard to assess applications and guide strategies for preventing
 
 **Action:** Weigh designs based on *likelihood × impact*.  
 
+```mermaid
+graph TD
+  A[High Impact & High Likelihood] -->|Action| FIX[Fix Immediately]
+  B[High Impact & Low Likelihood] -->|Action| BACK[Backups & Runbooks]
+  C[Low Impact & High Likelihood] -->|Action| AUTO[Automate Recovery]
+  D[Low Impact & Low Likelihood] -->|Action| MON[Monitor & Accept Risk]
+```
 ---
 
 ## 🔹 Weighing Trade-offs  
@@ -87,6 +114,11 @@ A repeatable standard to assess applications and guide strategies for preventing
 
 **Action:** Instrument for both — catch failures before users see them.  
 
+```mermaid
+flowchart LR
+  L[Leading Indicators] --> WARN[Early Warning: Queue Depth, CPU, Latency]
+  G[Lagging Indicators] --> ISSUE[Customer Visible: Downtime, Errors]
+```
 ---
 
 ## 🔹 Failure Mode Mitigations  
@@ -95,6 +127,11 @@ A repeatable standard to assess applications and guide strategies for preventing
 
 **Action:** Pair each failure mode with preventative + corrective controls.  
 
+```mermaid
+flowchart TD
+  F[Failure Mode] --> P[Preventative]
+  F --> C[Corrective]
+```
 ---
 
 ## 🔹 Continuous Improvement  
@@ -104,6 +141,12 @@ A repeatable standard to assess applications and guide strategies for preventing
 
 **Action:** Treat resilience as an iterative lifecycle, not one-time design.  
 
+```mermaid
+flowchart LR
+  O[Operationalize] --> T[Test: Chaos Drills]
+  T --> L[Learn & Improve]
+  L --> O
+```
 ---
 
 ## 🔹 Key Takeaways  
