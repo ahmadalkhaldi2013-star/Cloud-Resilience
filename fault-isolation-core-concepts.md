@@ -44,8 +44,9 @@ flowchart TD
 ## 🔹 Additional Service Examples
 
 ```mermaid
+%% two-row layout for better readability
 flowchart TB
-
+  %% row containers
   subgraph Row1[ ]
     direction LR
     subgraph RDS["RDS"]
@@ -87,6 +88,7 @@ flowchart TB
       S3DP["DP:<br/>GetObject<br/>PutObject"]
     end
   end
+
 ```
 
 **Action:** Map your services into **CP vs DP operations**. Depend on **DP ops** for resiliency.
