@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Fault Isolation – Core Concepts
+title: Welcome to Cloud Resilience
 ---
 
 # Welcome to Cloud Resilience  
