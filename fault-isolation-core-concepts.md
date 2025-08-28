@@ -18,13 +18,13 @@ title: Fault Isolation – Core Concepts
 
 **Action:** Architect workloads to **rely on the data plane**, not continuous control plane availability.  
 
-```mermaid
+<div class="mermaid">
 flowchart TD
   U[User] --> CP[Control Plane<br/>Create/Update/Delete]
   U --> DP[Data Plane<br/>Execute Requests]
   CP -.-> Res[Resources]
   DP --> Res
-```
+</div>
 ---
 
 ## 🔹 Example: EC2
