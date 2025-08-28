@@ -1,7 +1,4 @@
----
-layout: default
-title: Fault Isolation – Core Concepts
----
+--- layout: default ---
 
 # Fault Isolation – Core Concepts
 
