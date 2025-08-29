@@ -1,4 +1,5 @@
-title: Cloud Resilience
+title: Resilient Systems
+description: System design, Cloud Resiliance and reliability patterns for production.
 markdown: kramdown
 kramdown:
   input: GFM
