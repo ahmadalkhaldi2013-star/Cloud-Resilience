@@ -183,15 +183,7 @@ flowchart LR
 
 ---
 
-## 🔹 Static Stability Example
-- Synchronous dependencies multiply downtime risk.  
-- Asynchronous dependencies reduce cascading failures.  
-
-**Action:** Replace synchronous calls with asynchronous patterns for resilience.  
-
----
-
-## 🔹 EC2 Dependency ≠ Destiny
+## 🔹 EC2 Dependency ≠ Destiny Example
 - Even if the **EC2 control plane** fails, running instances (data plane) keep working.  
 
 **Action:** Assume **data plane survival** in your recovery design.  
@@ -201,7 +193,7 @@ flowchart LR
 ## 🔹 Lambda Dependency ≠ Destiny
 - Lambda depends on EC2, but uses **warm pools** of instances to reduce cold start risk.  
 
-**Action:** Use warm pools, buffers, or caching layers to decouple from single dependencies.  
+**Action:** Use warm pools, buffers, or caching layers to decouple from single dependencies.  When a request arrives and a warm env is available, Lambda skips cold init and runs the handler immediately.
 
 ---
 
@@ -255,15 +247,6 @@ flowchart LR
 ```
 
 **Action:** Enable **Serve-Stale DNS** where supported to maintain service continuity. 
-
----
-
-## 🔹 Static Stability Takeaways
-- Operate normally in a **static state** during dependency outages.  
-- Remove real-time reliance on control planes.  
-- Use data plane + pre-provisioning for recovery.  
-
-**Action:** Build fallback paths that work even if dependencies are down.  
 
 ---
 
