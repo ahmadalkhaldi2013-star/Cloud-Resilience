@@ -169,7 +169,17 @@ flowchart LR
 - Maintain state locally.  
 - Eliminate synchronous dependencies (replace with async/indirect sync).  
 
-**Action:** Adopt async + pre-provisioning to survive dependency failures.  
+**Action — Static Stability Playbook**
+- **Async > Sync:** Replace cross-service sync RPCs on the hot path with **events/queues**. Consumers process later; callers don’t block.
+- **DAG-only dependencies:** Enforce a one-way graph (no A⇄B). Add a **graph linter** in CI to fail PRs that introduce cycles.
+- **Split responsibilities:** If B “needs” A for an unrelated check, move that check to a **third service** or a **replicated, read-only dataset** shared by both.
+- **Maintain state locally:** Keep **last-known-good** config/keys/catalog **in memory or on disk**; refresh in the background; **serve-stale within a safe TTL** if upstreams are down.
+  - Examples: cache **JWKS/OIDC keys**; snapshot **feature flags/config**; materialize a **read-only price/catalog view** (SQLite/RocksDB/Redis).
+- **Pre-provision capacity:** Set **min capacity / warm pools / provisioned concurrency** so cold starts or control-plane lag don’t stall traffic.
+- **Per-AZ locality:** Keep caches/queues **per AZ**; avoid cross-AZ calls on the steady-state read path.
+- **Graceful degradation:** On dependency trouble, **read-only mode**, queue writes, disable non-critical features automatically.
+- **Operational checks:** Run a **dependency graph audit**, “**kill the upstream**” drills, **cold-start tests**, and track **cache-hit SLOs**.
+
 
 ---
 
