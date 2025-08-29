@@ -11,8 +11,7 @@ It covers lifecycle activities, resilience tiers, architectural patterns, strate
 ---
 
 ## 📖 Start Here  
-- [Cloud Resilience](https://ahmadalkhaldi2013-star.github.io/Cloud-Resilience/)
-- [Resilience]({{ site.baseurl }}/Cloud-Resilience/)
+- [Cloud Resilience]({{ site.baseurl }}/Cloud-Resilience/)
 
 
 ---
