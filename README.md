@@ -64,3 +64,10 @@ Diagrams are **Mermaid** (render on GitHub and on the site).
 **This is not**
 - Vendor documentation or copy-paste Terraform/CloudFormation.
 - Implementation code—use these patterns to guide **design** and **operations**.
+
+
+## Connect
+
+GitHub: https://github.com/ahmadalkhaldi2013-star/Resilient-Systems
+
+LinkedIn: https://www.linkedin.com/in/alkhaldiahmad/
