@@ -8,21 +8,6 @@ title: Welcome to Cloud Resilience
 📂 **Topic area** in *Resilient Systems*.  
 Action-oriented guidance to design workloads that **survive failures and recover fast**.
 
-**What this is**
-- Patterns, checklists, and diagrams with clear **Action** lines.
-- Cloud-agnostic principles illustrated with **AWS terminology** (widely used).
-
-**What this is not**
-- Not vendor docs or step-by-step Terraform/CloudFormation.
-- Not implementation code. Use these patterns to guide design and reviews.
-
----
-
-## How to use this topic
-- Skim each section, then copy the **Action** lines into runbooks / review checklists.
-- Use the diagrams to explain fault boundaries to teammates.
-- Map terms to your cloud (table below) and adjust examples accordingly.
-
 ---
 
 ## AWS terms → cross-cloud mapping
@@ -57,36 +42,5 @@ Action-oriented guidance to design workloads that **survive failures and recover
 - Copy/paste and adapt diagrams in your design docs and reviews.
 
 ---
-
-## Contribute
-Real-world examples, corrections, or better diagrams are welcome.  
-**Action:** Open an Issue/PR on GitHub with context and what changed.
-
----
-
-## Audience
-
-**Primary**
-- Cloud / Solution Architects
-- Site Reliability Engineers (SREs)
-- Platform / DevOps Engineers
-
-**Also useful for**
-- Backend & Feature Engineers (owning services in prod)
-- Tech Leads & Engineering Managers (reviewing designs/runbooks)
-- Security/Compliance & Risk (failure modes, controls)
-- Data/ML Platform Engineers (pipelines, state, recovery)
-- Incident Commanders & On-call Responders
-- QA / Performance Engineers (failure & load test planning)
-
-**How to use by role**
-- *Architects*: adopt patterns, fault boundaries, and **Action** checklists in design reviews.
-- *SRE/Platform*: turn **Action** lines into runbooks, SLOs, chaos & DR tests.
-- *Developers*: map diagrams to your service, swap AWS terms for your cloud, and add to service READMEs.
-- *Leads/Managers*: use sections as acceptance criteria for design docs and launch reviews.
-
-**Prereqs**
-- Working knowledge of cloud primitives (compute, storage, networking) and basic IaC.
-- AWS terms are used for examples; map to your cloud using the table above.
 
 **Goal:** Provide a clear framework to **evaluate, design, and operate workloads** that can survive failure and recover fast.

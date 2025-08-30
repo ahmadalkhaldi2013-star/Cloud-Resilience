@@ -20,8 +20,8 @@ For 15+ years I saved hard-won notes to external drives and left them in desk dr
 ## What you’ll find (topics)
 
 - **Cloud Resilience** — fault isolation, static stability, AZ independence, recovery patterns.
-- **System Design** — scalability, consistency & state, backpressure, latency budgets. *(coming soon)*
-- **Reliability Engineering (SRE)** — SLOs, error budgets, incident response, post-incident learning. *(coming soon)*
+- **System Design** — scalability, consistency & state, backpressure, latency budgets.
+- **Reliability Engineering (SRE)** — SLOs, error budgets, incident response, post-incident learning.
 - **Architecture Patterns** — queues vs pub/sub, idempotency, circuit-breakers, bulkheads, retries/backoff.
 - **Testing & Chaos** — load tests, dependency failure drills, game days, DR runbooks.
 
@@ -31,10 +31,28 @@ For 15+ years I saved hard-won notes to external drives and left them in desk dr
 
 ## Who this is for
 
-- Cloud / Solution **Architects**
-- **SREs** and Platform / DevOps Engineers
-- Backend Engineers who own services in prod
-- Tech Leads & Engineering Managers
+**Primary**
+- Cloud / Solution Architects
+- Site Reliability Engineers (SREs)
+- Platform / DevOps Engineers
+
+**Also useful for**
+- Backend & Feature Engineers (owning services in prod)
+- Tech Leads & Engineering Managers (reviewing designs/runbooks)
+- Security/Compliance & Risk (failure modes, controls)
+- Data/ML Platform Engineers (pipelines, state, recovery)
+- Incident Commanders & On-call Responders
+- QA / Performance Engineers (failure & load test planning)
+
+**How to use by role**
+- *Architects*: adopt patterns, fault boundaries, and **Action** checklists in design reviews.
+- *SRE/Platform*: turn **Action** lines into runbooks, SLOs, chaos & DR tests.
+- *Developers*: map diagrams to your service, swap AWS terms for your cloud, and add to service READMEs.
+- *Leads/Managers*: use sections as acceptance criteria for design docs and launch reviews.
+
+**Prereqs**
+- Working knowledge of cloud primitives (compute, storage, networking) and basic IaC.
+- AWS terms are used for examples; map to your cloud using the table above.
 
 ---
 
@@ -61,6 +79,8 @@ For 15+ years I saved hard-won notes to external drives and left them in desk dr
 
 - **GitHub:** [ahmadalkhaldi2013-star/Resilient-Systems](https://github.com/ahmadalkhaldi2013-star/Resilient-Systems)  
 - **LinkedIn:** [Connect with me](https://www.linkedin.com/in/alkhaldiahmad/)
+
+**Action:** Open an Issue/PR on GitHub with context and what changed.
 
 **Action:** If something helped you, share it or open a PR with a better diagram, example, or checklist.
 
